@@ -196,7 +196,7 @@ def find_duplicates(dirs, opts):
                             print(" ", abspath(path))
 
     if opts.verbose:
-        print(f"Found      {distincts:,} duplicatation sets", file=stderr)
+        print(f"Found      {distincts:,} duplication sets", file=stderr)
         print(f"Found      {npaths:,} paths within sets", file=stderr)
         print(f"Calculated {hashes_calculated:,} SHA1 hashes", file=stderr)
         print(f"Short-cut  {hashes_skipped:,} hard links", file=stderr)
