@@ -11,8 +11,8 @@ compare() {
 
 alias 1='header "Without explicit typing"'
 alias 2='header "Adding type annotations"'
-alias 3='header "Runtime typing"'
-alias 4='header "Third-party runtime typing"'
+alias 3='header "Runtime typing not hit"'
+alias 4='header "Runtime typing active"'
 alias 5='header "Fast-API: Pydantic uService"'
 alias 6='header "Typer: Pydantic CLI parsing"'
 alias v='view'
