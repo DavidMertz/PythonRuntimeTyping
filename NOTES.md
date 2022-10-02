@@ -4,10 +4,9 @@
 
 ## (1) Without explicit typing
 
-- Present `finddups.py` and show its general functionality
-- `./finddups.py -l -m20000 ~/tmp`
-- `./finddups.py -l ~/tmp | wc` (907 1541 81790)
-- `./finddups.py -l ~/tmp | bat` (search "colors")
+- `time ./finddups.py -l ~/miniconda3/ | less`
+- `finddups.py` and show its general functionality
+- `./finddups.py -l ../cleaning-data | wc`
 - `mypy finddups.py`
 - `pytype finddups.py` (Google)
 - `pyright finddups.py` (Microsoft)
@@ -18,7 +17,7 @@
 
 - `compare finddups.py finddups2.py`
 - Show the equivalence of the modification
-  - `./finddups2.py -l ~/tmp | wc`
+  - `./finddups2.py -l ../cleaning-data | wc`
 - `mypy finddups2.py`
 - `pytype finddups2.py`
 - `pyright finddups2.py`
@@ -32,7 +31,7 @@
 
 - `compare finddups2.py finddups3.py`
 - Show the equivalence of the modification
-  - `./finddups3.py -l ~/tmp | wc`
+  - `./finddups3.py -l ../cleaning-data | wc`
 - `mypy finddups3.py`
 - `pytype finddups3.py`
 - `pyright finddups3.py`
@@ -41,7 +40,7 @@
   - `mypy finddups3.py`
   - `pytype finddups3.py`
   - `pyright finddups3.py`
-  - Not hit at runtime `./finddups4.py -l ~/tmp | wc`
+  - Not hit at runtime `./finddups4.py -l ../cleaning-data | wc`
 
 ## (4) Third-party runtime typing
 
@@ -103,7 +102,7 @@ curl -s -X POST http://localhost:8000/finfo \
 - `mypy finddups-typer.py`
 - `./finddups.py --help`
 - `./findups-typer.py --help`
-- `./finddups.py -m not-an-int ~/tmp`
-- `./finddups-typer.py -m not-an-int ~/tmp`
+- `./finddups.py -m not-an-int ../cleaning-data`
+- `./finddups-typer.py -m not-an-int ../cleaning-data`
 - `./finddups-typer.py -l | wc` (same as other versions)
 - `./finddups-typer.py --<tab>`
