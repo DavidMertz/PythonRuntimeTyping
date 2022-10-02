@@ -4,9 +4,6 @@ Given a root directory, recurse in it and find all the duplicate
 files, files that have the same contents, but not necessarily the
 same filename.
 """
-
-# created by David Mertz and Martin Blais
-#
 # This code is released as CC-0
 # http://creativecommons.org/publicdomain/zero/1.0/
 

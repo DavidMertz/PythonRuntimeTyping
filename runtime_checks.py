@@ -5,22 +5,22 @@ pool = Pool(8)
 
 fileGroups = [
     [
-        ("finddups.py", 7188, 8269401),
-        ("finddups2.py", 8037, 8269470),
-        ("finddups2a.py", 7866, 8269464),
-        ("finddups3.py", 8061, 8269341),
-        ("finddups4.py", 8085, 8269452),
+        (7157, "finddups.py", 8269401),
+        (8022, "finddups2.py", 8269470),
+        (7862, "finddups2a.py", 8269464),
+        (8050, "finddups3.py", 8269341),
+        (8074, "finddups4.py", 8269452),
     ],
     [
-        ("finddups.py", 7188, 8269401),
-        ("finddups2.py", 8037, 8269470),
-        ("finddups2a.py", 7866, None),
-        ("finddups3.py", 8061, 8269341),
+        (7157, "finddups.py", 8269401),
+        (8022, "finddups2.py", 8269470),
+        (7862, "finddups2a.py", None),
+        (8050, "finddups3.py", 8269341),
     ],
     [
-        ("finddups.py", 7188, 8269401),
-        ("finddups2.py", 8037, 8269470),
-        ("finddups2a.py", 7866, 8269464),
+        (7157, "finddups.py", 8269401),
+        (8022, "finddups2.py", 8269470),
+        (7862, "finddups2a.py", 8269464),
     ],
 ]
 
@@ -32,4 +32,4 @@ for ngroup, group in enumerate(fileGroups):
     except ValidationError as e:
         print(f"Problem detected with file group {ngroup+1}")
         print(e)
-    print("-" * 79)
+    print("-" * 72)

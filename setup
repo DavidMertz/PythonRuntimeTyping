@@ -1,12 +1,36 @@
-alias header="toilet -f future --filter metal:border"
+header() {
+    clear
+    toilet -f future --filter metal:border " $1 "
+    sleep 5
+    echo; echo;
+}
+
+compare() {
+    colordiff -c2 "$1" "$2" | less -r;
+}
+
 alias 1='header "Without explicit typing"'
 alias 2='header "Adding type annotations"'
 alias 3='header "Runtime typing"'
 alias 4='header "Third-party runtime typing"'
 alias 5='header "Fast-API: Pydantic uService"'
 alias 6='header "Typer: Pydantic CLI parsing"'
+alias v='view'
 
-compare() {
-    colordiff -c2 "$1" "$2" | less -r;
-}
+export PS1="\[\e[1;32m\]PyCon MEA ⮞\[\e[0m\] "
+
+# Intro slide
+clear
+echo
+toilet -f future --filter metal:border " Runtime Typing in Python "
+echo
+sleep 2
+toilet -f future --gay "> David Mertz, Ph.D. "
+echo
+sleep 2
+toilet -f future "> github : DavidMertz"
+echo
+toilet -f future "> / PythonRuntimeTyping"
+echo
+sleep 5
 

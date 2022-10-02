@@ -4,9 +4,6 @@ Given a root directory, recurse in it and find all the duplicate
 files, files that have the same contents, but not necessarily the
 same filename.
 """
-
-# created by David Mertz and Martin Blais
-#
 # This code is released as CC-0
 # http://creativecommons.org/publicdomain/zero/1.0/
 
@@ -85,7 +82,7 @@ def scan_files(args, opts):
                             path = entry.path
                             size = entry.stat().st_size
                             inode = entry.inode()
-                            yield Finfo(path, size, inode)
+                            yield Finfo(size, path, inode)
                         except FileNotFoundError as err:
                             if opts.verbose:
                                 print(err, file=stderr)
@@ -165,7 +162,7 @@ def group_by_key(records, key=0, val_type=lambda *x: tuple(x), reverse=True):
 def get_path_infos(dirs, opts):
     "Yield a sequence of Finfo objects"
     count = 0
-    for path, size, inode in scan_files(dirs, opts):
+    for size, path, inode in scan_files(dirs, opts):
         if opts.min_size <= size <= opts.max_size:
             count += 1
             yield Finfo(size, path, inode)

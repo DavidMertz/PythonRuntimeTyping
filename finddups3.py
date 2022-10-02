@@ -4,9 +4,6 @@ Given a root directory, recurse in it and find all the duplicate
 files, files that have the same contents, but not necessarily the
 same filename.
 """
-
-# created by David Mertz and Martin Blais
-#
 # This code is released as CC-0
 # http://creativecommons.org/publicdomain/zero/1.0/
 
@@ -28,8 +25,8 @@ from typing import Iterator, Iterable, Any
 # Keep together associated file information
 @dataclass
 class Finfo:
-    path: str
     size: int
+    path: str
     inode: int
 
 
@@ -99,7 +96,7 @@ def scan_files(args: Iterable[str | PathLike[Any]], opts) -> Iterator[Finfo]:
                             path = entry.path
                             size = entry.stat().st_size
                             inode = entry.inode()
-                            yield Finfo(path, size, inode)
+                            yield Finfo(size, path, inode)
                         except FileNotFoundError as err:
                             if opts.verbose:
                                 print(err, file=stderr)

@@ -1,23 +1,25 @@
 # Things to Demo
 
-- `./intro`
+- `. ./setup`
 
 ## (1) Without explicit typing
-
 - `time ./finddups.py -l ~/miniconda3/ | less`
-- `finddups.py` and show its general functionality
-- `./finddups.py -l ../cleaning-data | wc`
+- `finddups.py` general functionality
+- `./finddups.py -vl /tmp/clean | wc`
 - `mypy finddups.py`
 - `pytype finddups.py` (Google)
+  - Inference not gradual typing
+  - Do not warn on "OK-at-runtime" code
 - `pyright finddups.py` (Microsoft)
-  - Misreport (?) on 33 of `.strip()`
-  - Good catch on 177 of possible `None`
+  - Generally aggressive in diagnosis
+  - Misreport on 30 of `.strip()`
+  - Good catch on 176 of possible `None`
 
 ## (2) Adding type annotations
 
 - `compare finddups.py finddups2.py`
 - Show the equivalence of the modification
-  - `./finddups2.py -l ../cleaning-data | wc`
+  - `./finddups2.py -vl /tmp/clean | wc`
 - `mypy finddups2.py`
 - `pytype finddups2.py`
 - `pyright finddups2.py`
@@ -30,17 +32,21 @@
 ## (3) Runtime typing
 
 - `compare finddups2.py finddups3.py`
+  - @pydantic.dataclass not BaseModel 
 - Show the equivalence of the modification
-  - `./finddups3.py -l ../cleaning-data | wc`
+  - `./finddups3.py -vl ../clean | wc`
 - `mypy finddups3.py`
 - `pytype finddups3.py`
 - `pyright finddups3.py`
 - Introduce a typing error in `finddups4.py`
   - `compare finddups3.py finddups4.py`
-  - `mypy finddups3.py`
-  - `pytype finddups3.py`
-  - `pyright finddups3.py`
-  - Not hit at runtime `./finddups4.py -l ../cleaning-data | wc`
+  - `mypy finddups4.py`
+  - `pytype finddups4.py`
+    - confused by classes within pydantic
+  - `pyright finddups4.py` 
+    - plays poorly with dataclass
+  - Not hit at runtime:
+    - `./finddups4.py -vl ../cleaning | wc`
 
 ## (4) Third-party runtime typing
 
@@ -53,8 +59,8 @@
 >>> from typing import AnyStr
 >>> from pydantic import BaseModel
 >>> class Finfo(BaseModel):
-...     path: AnyStr
 ...     size: int
+...     path: AnyStr
 ...     inode: int
 >>> finfo = Finfo(path='/some/path', size=3.1415, inode=12345678)
 >>> finfo
