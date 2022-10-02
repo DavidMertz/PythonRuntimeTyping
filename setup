@@ -1,7 +1,12 @@
-#!/bin/bash
+alias header="toilet -f future --filter metal:border"
 alias 1='header "Without explicit typing"'
 alias 2='header "Adding type annotations"'
 alias 3='header "Runtime typing"'
 alias 4='header "Third-party runtime typing"'
 alias 5='header "Fast-API: Pydantic uService"'
 alias 6='header "Typer: Pydantic CLI parsing"'
+
+compare() {
+    colordiff -c2 "$1" "$2" | less -r;
+}
+
