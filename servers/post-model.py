@@ -16,8 +16,8 @@ async def read_item(id: int):
 
 
 class Finfo(BaseModel):
-    path: AnyStr
     size: int = 0
+    path: AnyStr
     inode: int = -1
 
 

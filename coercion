@@ -1,0 +1,12 @@
+>>> from typing import AnyStr
+>>> from pydantic import BaseModel
+>>> class Finfo(BaseModel):
+...     size: int
+...     path: AnyStr
+...     inode: int
+>>> finfo = Finfo(path='/some/path', size=3.1415, inode=12345678)
+>>> finfo
+Finfo(path=b'/path/to/here', size=3, inode=12345678)
+>>> finfo.json()
+'{"path": "/path/to/here", "size": 3, "inode": 12345678}'
+

@@ -1,0 +1,74 @@
+conda activate runtime-typing
+
+export LINE=0
+RED='\e[0;31m'
+YELLOW='\e[0;93m'
+CYAN='\e[0;96m'
+PALE='\e[0;33m'
+UP='\e[<2>A'
+NC='\e[0m' # No Color
+
+n() {
+    LINE=$(($LINE + 1));
+    export CMD="$(cat STEPS | head -$LINE | tail -1)"
+    echo -e "\e[2A\e[3K"
+    echo -e "${RED}★ ${YELLOW}${CMD} ${RED}★${NC}"
+}
+
+p() {
+    LINE=$(($LINE - 1));
+    export CMD="$(cat STEPS | head -$LINE | tail -1)"
+    printf "\033[2A"
+    echo -e "\033[3K"
+    echo -e "${PALE}${CMD}${NC}"
+}
+
+q() {
+    Q="
+ ██████╗ ██╗   ██╗███████╗███████╗████████╗██╗ ██████╗ ███╗   ██╗███████╗██████╗ 
+██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║██╔════╝╚════██╗
+██║   ██║██║   ██║█████╗  ███████╗   ██║   ██║██║   ██║██╔██╗ ██║███████╗  ▄███╔╝
+██║▄▄ ██║██║   ██║██╔══╝  ╚════██║   ██║   ██║██║   ██║██║╚██╗██║╚════██║  ▀▀══╝ 
+╚██████╔╝╚██████╔╝███████╗███████║   ██║   ██║╚██████╔╝██║ ╚████║███████║  ██╗   
+ ╚══▀▀═╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝  ╚═╝   
+"
+    clear
+    echo -e "${CYAN}${Q}${NC}";
+}
+
+header() {
+    clear
+    toilet -f future --filter metal:border " $1 "
+    sleep 5
+    echo; echo;
+}
+
+compare() {
+    colordiff -c2 "$1" "$2" | less -r;
+}
+
+alias 1='header "Without explicit typing"'
+alias 2='header "Adding type annotations"'
+alias 3='header "Runtime typing not hit"'
+alias 4='header "Runtime typing active"'
+alias 5='header "Fast-API: Pydantic uService"'
+alias 6='header "Typer: Pydantic CLI parsing"'
+alias v='view'
+
+export PS1="\[\e[1;32m\]PyCon MEA ⮞\[\e[0m\] "
+
+# Intro slide
+clear
+echo
+toilet -f future --filter metal:border " Runtime Typing in Python "
+echo
+sleep 2
+toilet -f future --gay "> David Mertz, Ph.D. "
+echo
+sleep 2
+toilet -f future "> github : DavidMertz"
+echo
+toilet -f future "> / PythonRuntimeTyping"
+echo
+sleep 5
+

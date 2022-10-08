@@ -1,0 +1,72 @@
+(1) Without explicit typing
+./finddups.py --help
+time ./finddups.py -vl ~/miniconda3 > results.report
+./finddups.py -l ~/miniconda3/ | less -N
+./finddups.py -vl ~/clean | wc
+mypy finddups.py
+PyType: Google
+Inference not gradual typing
+Do not warn on 'OK-at-runtime' code
+pytype finddups.py
+PyRight: Microsoft
+Generally aggressive in diagnosis
+Misreport on 30 of .strip()
+Good catch on 176 of possible None
+pyright finddups.py
+--------------------
+(2) Adding type annotations
+compare finddups.py finddups2.py
+Show the equivalence of the modification
+./finddups2.py -vl ~/clean | wc
+mypy finddups2.py
+pytype finddups2.py
+pyright finddups2.py
+Correct the type complaints
+compare finddups2.py finddups2a.py
+mypy finddups2a.py
+pytype finddups2a.py
+pyright finddups2a.py
+--------------------
+(3) Runtime typing
+compare finddups2.py finddups3.py
+@pydantic.dataclass not BaseModel 
+Show the equivalence of the modification
+./finddups3.py -vl ~/clean | wc
+mypy finddups3.py
+pytype finddups3.py
+pyright finddups3.py
+Introduce a typing error in finddups4.py
+compare finddups3.py finddups4.py
+mypy finddups4.py
+pytype finddups4.py
+confused by classes within pydantic
+pyright finddups4.py 
+plays poorly with dataclass
+Not hit at runtime:
+./finddups4.py -vl ~/clean | wc
+-------------------
+(4) Third-party runtime typing
+bat runtime_checks.py
+Typing error is clearer and more remediable than traceback
+./runtime_checks.py
+Mild type coercion in models
+bat coercion -lpython
+--------------------
+(5) Fast-API: Pydantic as a microservice
+Launch server: `uvicorn main:app --reload
+cp servers/hello.py main.py
+bat servers/hello.py
+curl -s http://localhost:8000 | jq
+cp servers/hello-path.py main.py
+bat servers/hello-path.py
+curl -s http://localhost:8000/item/1234 | jq
+curl -s http://localhost:8000/item/not-an-int | jq
+cp servers/post-model.py main.py
+bat servers/post-model.py
+POST some data
+curl -s -X POST http://localhost:8000/finfo -H 'Content-Type: application/json'  -d '{"path":"/some/path","size":100,"inode":99999}' | jq
+POST some not-quite-right data to coerce
+curl -s -X POST http://localhost:8000/finfo -H 'Content-Type: application/json' -d '{"path":"/some/path","size":3.14,"inode":99999}' | jq
+POST some very-wrong data:
+curl -s -X POST http://localhost:8000/finfo -H 'Content-Type: application/json' -d '{"path":"/some/path","size":null,"inode":99999}' | jq
+
