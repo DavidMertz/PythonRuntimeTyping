@@ -27,8 +27,8 @@ from typing import Iterator, Iterable, Any, List
 # Keep together associated file information
 @dataclass
 class Finfo:
-    path: str
     size: int
+    path: str
     inode: int
 
 
@@ -89,7 +89,7 @@ def scan_files(args: Iterable[str | PathLike[Any]], opts) -> Iterator[Finfo]:
                             path = entry.path
                             size = entry.stat().st_size
                             inode = entry.inode()
-                            yield Finfo(path, size, inode)
+                            yield Finfo(size, path, inode)
                         except FileNotFoundError as err:
                             if opts.verbose:
                                 print(err, file=stderr)

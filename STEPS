@@ -28,22 +28,15 @@ pytype finddups2a.py
 pyright finddups2a.py
 --------------------
 (3) Runtime typing
-compare finddups2.py finddups3.py
 @pydantic.dataclass not BaseModel 
+compare finddups2.py finddups3.py
 Show the equivalence of the modification
+Not hit at runtime:
 ./finddups3.py -vl ~/clean | wc
 mypy finddups3.py
-pytype finddups3.py
-pyright finddups3.py
-Introduce a typing error in finddups4.py
-compare finddups3.py finddups4.py
-mypy finddups4.py
-pytype finddups4.py
-confused by classes within pydantic
-pyright finddups4.py 
-plays poorly with dataclass
-Not hit at runtime:
-./finddups4.py -vl ~/clean | wc
+NOTE: pytype and pyright have non-relevant complaints about Pydantic
+[?] pytype finddups3.py
+[?] pyright finddups3.py
 -------------------
 (4) Third-party runtime typing
 bat runtime_checks.py
@@ -74,7 +67,7 @@ compare finddups3.py finddups-typer.py
 mypy finddups-typer.py
 ./finddups.py --help
 ./findups-typer.py --help
-./finddups.py -m not-an-int ../cleaning-data
-./finddups-typer.py -m not-an-int ../cleaning-data
+./finddups.py -m not-an-int ~/clean
+./finddups-typer.py -m not-an-int ~/clean
 ./finddups-typer.py -l | wc` (same as other versions)
 ./finddups-typer.py --<tab>

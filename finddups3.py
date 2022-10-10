@@ -110,8 +110,8 @@ def hash_content(finfo: Finfo) -> HashRecord:
             return HashRecord(sha1(content).hexdigest(), finfo)
     except IOError as s:
         print(s, file=stderr)
-        return HashRecord("_ERROR", finfo)
-
+        # NOTE: This is wrong, but only checked at runtime
+        return HashRecord("_ERROR", f"Cannot read {finfo.path}")
 
 def parallel_hash(
     finfos: list[Finfo], pool: multiprocessing.pool.Pool
