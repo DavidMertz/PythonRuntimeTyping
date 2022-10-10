@@ -69,4 +69,12 @@ POST some not-quite-right data to coerce
 curl -s -X POST http://localhost:8000/finfo -H 'Content-Type: application/json' -d '{"path":"/some/path","size":3.14,"inode":99999}' | jq
 POST some very-wrong data:
 curl -s -X POST http://localhost:8000/finfo -H 'Content-Type: application/json' -d '{"path":"/some/path","size":null,"inode":99999}' | jq
-
+--------------------
+compare finddups3.py finddups-typer.py
+mypy finddups-typer.py
+./finddups.py --help
+./findups-typer.py --help
+./finddups.py -m not-an-int ../cleaning-data
+./finddups-typer.py -m not-an-int ../cleaning-data
+./finddups-typer.py -l | wc` (same as other versions)
+./finddups-typer.py --<tab>

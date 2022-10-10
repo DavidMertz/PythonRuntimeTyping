@@ -1,0 +1,9 @@
+Looked up  153,166 file sizes
+Found      42,388 duplication sets
+Found      143,726 paths within sets
+Calculated 59,503 SHA1 hashes
+Short-cut  92,229 hard links
+
+real    0m38.834s
+user    0m37.771s
+sys     0m24.247s

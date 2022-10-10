@@ -201,8 +201,8 @@ def find_duplicates(
     dirs: Iterable[str | PathLike[Any]], opts: optparse.Values
 ) -> None:
     "Find the duplicate files in the given root directory."
-    # NOTE: this is a kludge to make mypy happy.  None is a *possible* return
-    # value for cpu_count(), but it will not happy on common architectures
+    # None is a *possible* return value for cpu_count(), 
+    # but it will not happen on common architectures
     n_cpus = cpu_count() or 2
     # Need process pool
     pool = Pool(processes=int(n_cpus * 0.75))
