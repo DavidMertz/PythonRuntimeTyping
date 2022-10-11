@@ -23,6 +23,19 @@ p() {
     echo -e "${PALE}${CMD}${NC}"
 }
 
+a() {
+    echo -e "\e[2A\e[3K"
+    echo "———————————————————————————————————————————————————————"
+    echo ">>> import that"
+    echo -e "${CYAN}"
+    echo "  A designer knows he has achieved perfection not" 
+    echo "  when there is nothing left to add, but when there"
+    echo "  is nothing left to take away."
+    echo -e "${PALE}"
+    echo "    -Antoine de Saint-Exupery"
+    echo -e "${NC}";
+}
+
 q() {
     Q="
  ██████╗ ██╗   ██╗███████╗███████╗████████╗██╗ ██████╗ ███╗   ██╗███████╗██████╗ 
