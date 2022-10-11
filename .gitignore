@@ -1,5 +1,5 @@
 # special
-results.report
+results.report*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
