@@ -83,5 +83,5 @@ toilet -f future "> github : DavidMertz"
 echo
 toilet -f future "> / PythonRuntimeTyping"
 echo
-sleep 5
+sleep 2
 

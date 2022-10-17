@@ -1,7 +1,7 @@
 (1) Without explicit typing
 ./finddups.py --help
 time ./finddups.py -vl ~/miniconda3 > results.report
-./finddups.py -l ~/miniconda3/ | less -N
+zcat results.report.gz | less -N
 ./finddups.py -vl ~/clean | wc
 mypy finddups.py
 PyType: Google

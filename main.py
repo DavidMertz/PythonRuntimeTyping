@@ -27,5 +27,5 @@ class HashRecord(BaseModel):
 
 
 @app.post("/finfo")
-async def post_finfo(finfo: Finfo):
+async def post_finfo(finfo: Finfo) -> HashRecord:
     return HashRecord(digest="<sha hash goes here>", finfo=finfo)
